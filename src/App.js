@@ -1,9 +1,16 @@
-import './App.css';
+import {GlobalStyle, Container, ContainerForm} from './styles'
 
 function App() {
+
   return (
     <div>
-      Form
+      <GlobalStyle />
+
+      <Container>
+        <ContainerForm>
+          Form
+        </ContainerForm>
+      </Container>
     </div>
   );
 }
