@@ -1,4 +1,4 @@
-import {GlobalStyle, Container, ContainerForm} from './styles'
+import {GlobalStyle, Container, ContainerForm, Form, TitleForm} from './styles'
 
 function App() {
 
@@ -8,7 +8,18 @@ function App() {
 
       <Container>
         <ContainerForm>
-          Form
+          <TitleForm>
+            <h1>Inscreva-se Para Receber Diversos Emails</h1>
+          </TitleForm>
+
+          <Form>
+            <form>
+              <input type='text' placeholder='Digite seu Nome' />
+              <input type='email' placeholder='Digite seu Email'/>
+
+              <input type='submit' value='Enviar' />
+            </form>
+          </Form>
         </ContainerForm>
       </Container>
     </div>
