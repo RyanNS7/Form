@@ -8,6 +8,7 @@ function App() {
 
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
+  const [message, setMessage] = useState('')
 
   useEffect(()=>{
     emailjs.init('wmbnHe3sqWPVavfGL')
@@ -48,16 +49,24 @@ function App() {
 
   const submitChange = (e) => {
     e.preventDefault()
+    aleatoryMessage()
 
     setErrors(validate(values))
 
-    emailjs.sendForm('TestandoEmail', 'template_swuaqe8', form.current, 'wmbnHe3sqWPVavfGL')
+    emailjs.sendForm('service_gn9blos', 'template_swuaqe8', form.current, 'wmbnHe3sqWPVavfGL')
     .then((result) => {
         console.log(result.text);
     }, (error) => {
         console.log(error.text);
     });
 
+  }
+
+  async function aleatoryMessage(){
+    const api = await fetch('https://api.chucknorris.io/jokes/random')
+    const data = await api.json()
+
+    setMessage(data.value)
   }
 
   return (
@@ -76,6 +85,7 @@ function App() {
               {errors.name && <div><p>{errors.name}</p></div>}
               <input type='email' placeholder='Digite seu Email' id='email' name='email' onChange={handleChange} value={values.email}/>
               {errors.email && <div><p>{errors.email}</p></div>}
+              <input type='hidden' name='message' value={message}/>
 
               <input type='submit' value='Enviar' onClick={submitChange} />
             </form>
