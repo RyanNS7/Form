@@ -42,6 +42,7 @@ export const TitleForm = styled.div`
     background: transparent;
 
     h1{
+        color: #EBEBEB;
         font-weight: bolder;
         font-family: 'Roboto', sans-serif;
     }
@@ -64,5 +65,11 @@ export const Form = styled.div`
 
     input:nth-child(3){
         border: 1px solid black;
+    }
+
+    div p {
+        color: #EBEBEB;
+        margin-bottom: 0.4rem;
+        margin-top: -0.5rem;
     }
 `
