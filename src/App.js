@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {GlobalStyle, Container, ContainerForm, Form, TitleForm} from './styles'
+import emailjs from '@emailjs/browser';
 
 function App() {
 
@@ -7,6 +8,10 @@ function App() {
 
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
+
+  useEffect(()=>{
+    emailjs.init('wmbnHe3sqWPVavfGL')
+  }, [])
 
 
 
@@ -39,10 +44,19 @@ function App() {
     return errors
   }
 
+  const form = useRef();
+
   const submitChange = (e) => {
     e.preventDefault()
 
     setErrors(validate(values))
+
+    emailjs.sendForm('TestandoEmail', 'template_swuaqe8', form.current, 'wmbnHe3sqWPVavfGL')
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
 
   }
 
@@ -57,10 +71,10 @@ function App() {
           </TitleForm>
 
           <Form>
-            <form> 
-              <input type='text' placeholder='Digite seu Nome' id='name' onChange={handleChange} value={values.name}/>
+            <form ref={form}> 
+              <input type='text' placeholder='Digite seu Nome' id='name' name='name' onChange={handleChange} value={values.name}/>
               {errors.name && <div><p>{errors.name}</p></div>}
-              <input type='email' placeholder='Digite seu Email' id='email' onChange={handleChange} value={values.email}/>
+              <input type='email' placeholder='Digite seu Email' id='email' name='email' onChange={handleChange} value={values.email}/>
               {errors.email && <div><p>{errors.email}</p></div>}
 
               <input type='submit' value='Enviar' onClick={submitChange} />
