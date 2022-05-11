@@ -8,7 +8,7 @@ function App() {
 
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('Each time you click send a different message will appear')
 
   useEffect(()=>{
     emailjs.init('wmbnHe3sqWPVavfGL')
@@ -51,14 +51,18 @@ function App() {
     e.preventDefault()
     aleatoryMessage()
 
-    setErrors(validate(values))
+    const error = validate(values)
 
-    emailjs.sendForm('service_gn9blos', 'template_swuaqe8', form.current, 'wmbnHe3sqWPVavfGL')
-    .then((result) => {
-        console.log(result.text);
-    }, (error) => {
-        console.log(error.text);
-    });
+    setErrors(error)
+
+    if(Object.keys(error).length === 0){
+      emailjs.sendForm('service_gn9blos', 'template_swuaqe8', form.current, 'wmbnHe3sqWPVavfGL')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });      
+    }
 
   }
 
@@ -87,7 +91,7 @@ function App() {
               {errors.email && <div><p>{errors.email}</p></div>}
               <input type='hidden' name='message' value={message}/>
 
-              <input type='submit' value='Enviar' onClick={submitChange} />
+              <input type='submit' value='Enviar' onClick={submitChange} className='submit' />
             </form>
           </Form>
         </ContainerForm>

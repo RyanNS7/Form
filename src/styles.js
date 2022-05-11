@@ -63,13 +63,14 @@ export const Form = styled.div`
         font-size: 18px;
     }
 
-    input:nth-child(3){
-        border: 1px solid black;
-    }
-
     div p {
         color: #EBEBEB;
         margin-bottom: 0.4rem;
         margin-top: -0.5rem;
+    }
+
+    input:nth-child(4){
+        border: 1px solid black;
+        cursor: pointer;
     }
 `
