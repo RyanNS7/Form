@@ -107,7 +107,7 @@ function App() {
         </ContainerForm>
 
         {confirmation && <SendConfirmation>
-                <h1>Email enviado com Sucesso</h1>
+                <h1>Mensagem enviado com Sucesso para o email</h1>
               </SendConfirmation>}
       </Container>
     </div>
