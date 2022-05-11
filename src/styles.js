@@ -86,6 +86,7 @@ export const SendConfirmation = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     animation: confirmation 1s;
 
     @keyframes confirmation {
@@ -95,6 +96,7 @@ export const SendConfirmation = styled.div`
 
     @media screen and (max-width: 870px){
         width: 80%;
+        height: 12rem;
 
         h1{
             text-align: center;
