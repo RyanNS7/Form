@@ -6,6 +6,8 @@
 
 <p> As I am currently at the beginning of my studies in React, I am doing simple projects with new challenges so that I can continue to gain new knowledge and learning. </p>
 
+<a href='https://small-formulary.netlify.app/'> Test the project here </a>
+
 <h3 >Technologies</h3>
 <ul>
     <li> <a href='https://pt-br.reactjs.org/'> React.js </a> </li>
