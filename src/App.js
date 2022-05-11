@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import {GlobalStyle, Container, ContainerForm, Form, TitleForm} from './styles'
+import {GlobalStyle, Container, ContainerForm, Form, TitleForm, SendConfirmation} from './styles'
 import emailjs from '@emailjs/browser';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
   const [message, setMessage] = useState('Each time you click send a different message will appear')
+  const [confirmation, setConfirmation] = useState(false)
 
   useEffect(()=>{
     emailjs.init('wmbnHe3sqWPVavfGL')
@@ -62,6 +63,8 @@ function App() {
       }, (error) => {
           console.log(error.text);
       });      
+
+      setConfirmation(true)
     }
 
   }
@@ -72,6 +75,12 @@ function App() {
 
     setMessage(data.value)
   }
+
+  useEffect(()=> {
+    setTimeout(() => {
+      setConfirmation(false)
+    }, 4500)
+  }, [confirmation])
 
   return (
     <div>
@@ -94,7 +103,12 @@ function App() {
               <input type='submit' value='Enviar' onClick={submitChange} className='submit' />
             </form>
           </Form>
+
         </ContainerForm>
+
+        {confirmation && <SendConfirmation>
+                <h1>Email enviado com Sucesso</h1>
+              </SendConfirmation>}
       </Container>
     </div>
   );

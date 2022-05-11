@@ -74,3 +74,30 @@ export const Form = styled.div`
         cursor: pointer;
     }
 `
+
+export const SendConfirmation = styled.div`
+    width: 50%;
+    height: 10rem;
+    padding: 4px;
+    background: rgba(0,0,0, 0.9);
+    position: absolute;
+    top: 0%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: confirmation 1s;
+
+    @keyframes confirmation {
+        0% {top: -400%};
+        100% {top: 0}
+    }
+
+    @media screen and (max-width: 870px){
+        width: 80%;
+
+        h1{
+            text-align: center;
+        }
+    }
+`
